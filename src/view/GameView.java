@@ -13,11 +13,12 @@ import javax.swing.JPanel;
 public class GameView extends JPanel {
 
   private List<Image> images = new ArrayList<>();
+  private final String filePath = (System.getProperty("os.name").startsWith("Windows")) ? "src\\images\\" : "src/images/";
 
   public GameView() {
     try {
-      images.add(ImageIO.read(new File("src/images/background.png")).getScaledInstance(800, 600, Image.SCALE_DEFAULT));
-      images.add(ImageIO.read(new File("src/images/bird.png")).getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+      images.add(ImageIO.read(new File(filePath + "background.png")).getScaledInstance(800, 600, Image.SCALE_DEFAULT));
+      images.add(ImageIO.read(new File(filePath + "bird.png")).getScaledInstance(50, 50, Image.SCALE_DEFAULT));
     } catch (IOException e) {
       e.printStackTrace();
     }
