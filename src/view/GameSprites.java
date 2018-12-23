@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.imageio.ImageIO;
 
 
@@ -28,18 +29,16 @@ public class GameSprites {
     }
   }
 
-  private <T> void bind(T object, Image image) {
+  <T> void bind(T object, Image image) {
     objectImage.put(object, image);
   }
 
-  private <T> Image get(T object) {
+  <T> Image get(T object) {
     Image i = objectImage.get(object);
     if (i == null) {
       return get(object.getClass());
     }
     return i;
   }
-
-
 }
 

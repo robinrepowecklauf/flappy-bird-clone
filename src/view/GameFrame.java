@@ -4,6 +4,10 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
+/**
+ * Class that creates the frame
+ */
+
 public class GameFrame extends JFrame {
 
   private static final int WINDOW_WIDTH = 800;
