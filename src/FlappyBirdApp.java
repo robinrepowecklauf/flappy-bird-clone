@@ -4,11 +4,11 @@ import controller.GameController;
 public class FlappyBirdApp {
 
   public static void main(String[] args){
-    GameView view = new GameView();
-    GameFrame game = new GameFrame(view);
+    GameSprites view = new GameSprites();
+    GameFrame game = new GameFrame();
     GameController controller = new GameController();
 
-    controller.timer.start();
+    //controller.timer.start();
 
   }
 }
