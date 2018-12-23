@@ -4,7 +4,7 @@ package model;
  * Class that defines the fundamentals of a bird
  */
 
-class Bird {
+class Bird implements IPositionable {
 
   private double x;
   private double y;
@@ -14,8 +14,31 @@ class Bird {
     this.y = y;
   }
 
+  public double getWidth() {
+    return 0;
+  }
 
-/*  public void up(double x) {
+  public double getHeight() {
+    return 0;
+  }
+
+  public double getX() {
+    return x;
+  }
+
+  public void setX(double x) {
+    this.x = x;
+  }
+
+  public double getY() {
+    return y;
+  }
+
+  public void setY(double y) {
+    this.y = y;
+  }
+
+  /*  public void up(double x) {
     x += 10;
   } */
 }

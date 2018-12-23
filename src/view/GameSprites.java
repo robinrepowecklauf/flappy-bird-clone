@@ -8,21 +8,28 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import model.GameModel;
 
 /**
  * Class that defines the sprites used in the game
  */
 
-public class GameSprites {
+class GameSprites {
 
   private final String filePath = (System.getProperty("os.name").startsWith("Windows")) ? "src\\images\\" : "src/images/";
   private Map<Object, Image> objectImage = new HashMap<>();
 
+  GameModel model;
+
+  Image bird;
+  Image background;
+  Image pipe;
+
   {
     try {
-      final Image bird = ImageIO.read(new File(filePath + "bird.png"));
-      final Image background = ImageIO.read(new File(filePath + "background.png"));
-      final Image pipe = ImageIO.read(new File(filePath + "pipe.png"));
+      bird = ImageIO.read(new File(filePath + "bird.png")).getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+      background = ImageIO.read(new File(filePath + "background.png"));
+      pipe = ImageIO.read(new File(filePath + "pipe.png"));
     } catch (IOException e) {
       System.out.println("Couldn't load images correctly!");
       e.printStackTrace();

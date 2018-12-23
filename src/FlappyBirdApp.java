@@ -4,8 +4,9 @@ import controller.GameController;
 public class FlappyBirdApp {
 
   public static void main(String[] args){
-    GameSprites view = new GameSprites();
-    GameFrame game = new GameFrame();
+
+    GamePanel view = new GamePanel();
+    GameFrame game = new GameFrame(view);
     GameController controller = new GameController();
 
     //controller.timer.start();

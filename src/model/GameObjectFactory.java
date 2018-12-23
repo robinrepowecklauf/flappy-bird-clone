@@ -1,6 +1,6 @@
 package model;
 
-class GameObjectFactory {
+public class GameObjectFactory {
 
   public static Bird createBird(int x, int y) {
     return new Bird(x, y);
