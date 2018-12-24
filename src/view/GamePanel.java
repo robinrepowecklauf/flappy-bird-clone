@@ -16,7 +16,7 @@ public class GamePanel extends JPanel {
   private GameModel model = new GameModel();
   private GameSprites sprite = new GameSprites();
 
-  GamePanel() {
+  public GamePanel() {
 
     sprite.bind(model.sprites.get(0), sprite.bird);
     sprite.bind(model.sprites.get(1), sprite.pipe);
