@@ -37,9 +37,5 @@ class Bird implements IPositionable {
   public void setY(double y) {
     this.y = y;
   }
-
-  /*  public void up(double x) {
-    x += 10;
-  } */
 }
 
