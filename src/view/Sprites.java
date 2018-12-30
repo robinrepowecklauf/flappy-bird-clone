@@ -16,20 +16,25 @@ import model.IPositionable;
 
 public class Sprites {
 
+  private static final int BIRD_WIDTH = 47;
+  private static final int BIRD_HEIGHT = 32;
+  private static final int PIPE_WIDTH = 80;
+  private static final int PIPE_HEIGHT = 200;
+
   private final String filePath = (System.getProperty("os.name").startsWith("Windows")) ? "src\\assets\\" : "src/assets/";
   private Map<IPositionable, Image> objectImage = new HashMap<>();
 
   Image bird;
   Image background;
-  Image pipe;
-  Image pipeHead;
+  Image pipeUp;
+  Image pipeDown;
 
   {
     try {
-      bird = ImageIO.read(new File(filePath + "yellow-bird.png")).getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-      background = ImageIO.read(new File(filePath + "background.png")).getScaledInstance(800, 600, Image.SCALE_DEFAULT);
-      pipe = ImageIO.read(new File(filePath + "green-pipe.png")).getScaledInstance(75, 200, Image.SCALE_DEFAULT);
-      pipeHead = ImageIO.read(new File(filePath + "green-pipe-head.png")).getScaledInstance(80, 50, Image.SCALE_DEFAULT);
+      bird = ImageIO.read(new File(filePath + "yellow-flappy-bird.png")).getScaledInstance(BIRD_WIDTH, BIRD_HEIGHT, Image.SCALE_DEFAULT);
+      background = ImageIO.read(new File(filePath + "light-background.jpg")).getScaledInstance(800, 600, Image.SCALE_DEFAULT);
+      pipeUp = ImageIO.read(new File(filePath + "green-pipe-up.png")).getScaledInstance(PIPE_WIDTH, PIPE_HEIGHT, Image.SCALE_DEFAULT);
+      pipeDown = ImageIO.read(new File(filePath + "green-pipe-down.png")).getScaledInstance(PIPE_WIDTH, PIPE_HEIGHT, Image.SCALE_DEFAULT);
     } catch (IOException e) {
       System.out.println("Could not load assets correctly!");
       e.printStackTrace();

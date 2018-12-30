@@ -13,8 +13,8 @@ public class FlappyBirdApp {
     Sprites sprites = new Sprites();
     GameModel model = new GameModel();
     GamePanel view = new GamePanel(model, sprites);
-    GameFrame game = new GameFrame(view);
     GameController controller = new GameController(model, view);
+    GameFrame game = new GameFrame(view, controller);
 
     controller.timer.start();
 

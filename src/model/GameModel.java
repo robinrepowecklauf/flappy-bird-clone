@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class that handles the logic and creates the objects used in the game
@@ -8,21 +9,29 @@ import java.util.ArrayList;
 
 public class GameModel {
 
-  public ArrayList<IPositionable> sprites = new ArrayList<>();
-  int x = 250;
+  public List<IPositionable> sprites = new ArrayList<>();
+  private int startXPosition = 200;
 
   public GameModel() {
-    sprites.add(GameObjectFactory.createBird(50, 250));
-    sprites.add(GameObjectFactory.createPipe(x, 300));
-    sprites.add(GameObjectFactory.createPipe(x, 0));
+    sprites.add(GameObjectFactory.createBird(50, 280));
+    sprites.add(GameObjectFactory.createPipe(startXPosition, 300));
+    sprites.add(GameObjectFactory.createPipe(startXPosition, -30));
   }
 
+  // TODO Check collision
   public void movePipes() {
-    for (IPositionable p : sprites) {
-      if(p instanceof Pipe) {
-        p.setX(x -= 1);
-        System.out.println(p.getX());
+    for (IPositionable s : sprites) {
+      if (s instanceof Pipe) {
+        s.setX(startXPosition -= 0);
       }
     }
+  }
+
+  public void jump() {
+   for(IPositionable s : sprites) {
+     if (s instanceof Bird) {
+       ((Bird) s).setY(s.getY() - 20);
+     }
+   }
   }
 }
