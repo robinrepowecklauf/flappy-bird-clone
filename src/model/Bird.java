@@ -1,41 +1,40 @@
 package model;
 
+import java.awt.geom.Point2D;
+
 /**
  * Class that defines the fundamentals of a bird
  */
 
 class Bird implements IPositionable {
 
-  private double x;
-  private double y;
+  private Point2D position;
+
 
   Bird(double x, double y) {
-    this.x = x;
-    this.y = y;
-  }
-
-  public double getWidth() {
-    return 0;
-  }
-
-  public double getHeight() {
-    return 0;
+    this.position = new Point2D.Double(x, y);
   }
 
   public double getX() {
-    return x;
-  }
-
-  public void setX(double x) {
-    this.x = x;
+    return position.getX();
   }
 
   public double getY() {
-    return y;
+    return position.getY();
+  }
+
+  public void setX(double x) {
+    this.position = new Point2D.Double(x, this.getY());
   }
 
   public void setY(double y) {
-    this.y = y;
+    this.position = new Point2D.Double(this.getX(), y);
+  }
+
+
+  @Override
+  public String toString() {
+    return "Bird";
   }
 }
 

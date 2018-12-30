@@ -1,3 +1,4 @@
+import model.GameModel;
 import view.*;
 import controller.GameController;
 
@@ -9,11 +10,13 @@ public class FlappyBirdApp {
 
   public static void main(String[] args) {
 
-    GamePanel view = new GamePanel();
+    Sprites sprites = new Sprites();
+    GameModel model = new GameModel();
+    GamePanel view = new GamePanel(model, sprites);
     GameFrame game = new GameFrame(view);
-    GameController controller = new GameController();
+    GameController controller = new GameController(model, view);
 
-    //controller.timer.start();
+    controller.timer.start();
 
   }
 }

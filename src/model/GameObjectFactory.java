@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * A class for creating objects used in the game
+ */
+
 class GameObjectFactory {
 
   static Bird createBird(int x, int y) {
