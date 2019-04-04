@@ -9,9 +9,12 @@ import java.awt.geom.Point2D;
 class Bird implements IPositionable {
 
   private Point2D position;
+  private double x, y, dx, dy;
 
 
   Bird(double x, double y) {
+    this.x = x;
+    this.y = y;
     this.position = new Point2D.Double(x, y);
   }
 
@@ -31,6 +34,10 @@ class Bird implements IPositionable {
     this.position = new Point2D.Double(this.getX(), y);
   }
 
+  public void updatePhysics() {
+    this.position.setLocation(this.x += dx, this.y += dy);
+    this.dy = 0.5;
+  }
 
   @Override
   public String toString() {

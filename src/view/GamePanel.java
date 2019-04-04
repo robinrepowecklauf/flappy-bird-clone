@@ -17,7 +17,6 @@ public class GamePanel extends JPanel {
   private Sprites sprite;
 
   public GamePanel(GameModel model, Sprites sprite) {
-
     this.model = model;
     this.sprite = sprite;
 
@@ -25,7 +24,6 @@ public class GamePanel extends JPanel {
   }
 
   private void imageToObject() {
-
     sprite.bind(model.sprites.get(0), sprite.bird);
     sprite.bind(model.sprites.get(1), sprite.pipeUp);
     sprite.bind(model.sprites.get(2), sprite.pipeDown);
