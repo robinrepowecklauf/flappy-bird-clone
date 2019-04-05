@@ -39,6 +39,10 @@ class Bird implements IPositionable {
     this.dy = 0.5;
   }
 
+  public void reset() {
+    this.position = new Point2D.Double(50, 280);
+  }
+
   @Override
   public String toString() {
     return "Bird";

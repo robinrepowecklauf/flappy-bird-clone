@@ -30,7 +30,7 @@ public class GameController implements ActionListener, KeyListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    model.movePipes();
+    model.handlePipes();
     view.repaint();
   }
 

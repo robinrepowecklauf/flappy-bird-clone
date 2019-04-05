@@ -16,10 +16,10 @@ import model.IPositionable;
 
 public class Sprites {
 
-  private static final int BIRD_WIDTH = 47;
-  private static final int BIRD_HEIGHT = 32;
-  private static final int PIPE_WIDTH = 80;
-  private static final int PIPE_HEIGHT = 200;
+  public static final int BIRD_WIDTH = 47;
+  public static final int BIRD_HEIGHT = 32;
+  public static final int PIPE_WIDTH = 80;
+  public static final int PIPE_HEIGHT = 200;
 
   private final String filePath = (System.getProperty("os.name").startsWith("Windows")) ? "src\\assets\\" : "src/assets/";
   private Map<IPositionable, Image> objectImage = new HashMap<>();
@@ -32,7 +32,7 @@ public class Sprites {
   {
     try {
       bird = ImageIO.read(new File(filePath + "yellow-flappy-bird.png")).getScaledInstance(BIRD_WIDTH, BIRD_HEIGHT, Image.SCALE_DEFAULT);
-      background = ImageIO.read(new File(filePath + "light-background.jpg")).getScaledInstance(800, 600, Image.SCALE_DEFAULT);
+      background = ImageIO.read(new File(filePath + "light-background.jpg")).getScaledInstance(GameFrame.WINDOW_WIDTH, GameFrame.WINDOW_HEIGHT, Image.SCALE_DEFAULT);
       pipeUp = ImageIO.read(new File(filePath + "green-pipe-up.png")).getScaledInstance(PIPE_WIDTH, PIPE_HEIGHT, Image.SCALE_DEFAULT);
       pipeDown = ImageIO.read(new File(filePath + "green-pipe-down.png")).getScaledInstance(PIPE_WIDTH, PIPE_HEIGHT, Image.SCALE_DEFAULT);
     } catch (IOException e) {
