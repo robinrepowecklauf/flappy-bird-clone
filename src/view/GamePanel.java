@@ -34,7 +34,7 @@ public class GamePanel extends JPanel {
     super.paintComponent(g);
     g.drawImage(sprite.background, 0, 0, null);
     for (IPositionable p : model.sprites) {
-      g.drawImage(sprite.get(p), (int) p.getX(), (int) p.getY(), null);
+      g.drawImage(sprite.get(p), Math.round(p.getX()), Math.round(p.getY()), null);
     }
   }
 }

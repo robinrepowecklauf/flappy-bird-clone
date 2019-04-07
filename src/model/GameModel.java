@@ -13,39 +13,47 @@ import view.Sprites;
 public class GameModel {
 
   public List<IPositionable> sprites = new ArrayList<>();
-  private int startXPosition = 200;
+  private int startXPipe = 200;
   private int backgroundSpeed = 1;
+  private int startYPipeDown = -30;
+  private int startYPipeUp = 300;
+  public boolean started = false;
 
   // TODO DO THIS MORE FLEXIBLE I.E COPY AN EXISTING PIPE??
   public GameModel() {
-    sprites.add(GameObjectFactory.createBird(50, 280));
-    sprites.add(GameObjectFactory.createPipe(startXPosition, 300));
-    sprites.add(GameObjectFactory.createPipe(startXPosition, -30));
+    sprites.add(GameObjectFactory.createBird(50, 330));
+    sprites.add(GameObjectFactory.createPipe(startXPipe, startYPipeUp));
+    sprites.add(GameObjectFactory.createPipe(startXPipe, startYPipeDown));
   }
 
-  // TODO Check collision with bird
   public void handlePipes() {
     for (IPositionable pipe : sprites) {
       movePipes(pipe);
-      collissionWithBird(pipe);
+    }
+  }
+
+  public void handleBird() {
+    for (IPositionable bird : sprites) {
+      if (bird instanceof Bird) {
+        ((Bird) bird).updatePhysics();
+        checkCollision(bird);
+      }
+    }
+  }
+
+  // TODO REPLACE SOUT
+  private void checkCollision(IPositionable bird) {
+    if (bird instanceof Bird && intersects()) {
+      System.out.println("Hit");
     }
   }
 
   private void movePipes(IPositionable pipe) {
     if (pipe instanceof Pipe) {
-      pipe.setX(startXPosition -= backgroundSpeed);
-    } else if (pipe.getX() + Sprites.PIPE_WIDTH <= 0) {
-      pipe.setX(Sprites.PIPE_WIDTH + GameFrame.WINDOW_WIDTH);
+      pipe.setX(startXPipe -= backgroundSpeed);
     }
-  }
-
-  // TODO SEE IT AS A RECTANGLE??????
-  private void collissionWithBird(IPositionable pipe) {
-    if (pipe instanceof Pipe) {
-      //Rectangle rec = new Rectangle(Math.abs())
-      if (pipe.getX() + Sprites.PIPE_WIDTH == sprites.get(0).getX() && pipe.getY() == sprites.get(0).getY()) {
-        System.out.println("Hit");
-      }
+    if (pipe.getX() + Sprites.PIPE_WIDTH <= 0) {
+      startXPipe = GameFrame.WINDOW_WIDTH - 20;
     }
   }
 
@@ -53,8 +61,25 @@ public class GameModel {
   public void jump() {
     for (IPositionable s : sprites) {
       if (s instanceof Bird) {
-        ((Bird) s).setY(s.getY() - 20);
+        ((Bird) s).jump();
       }
     }
   }
+
+  private boolean intersects() {
+    return sameXPosition() && (leftOfPipeDown() || leftOfPipeUp());
+  }
+
+  private boolean sameXPosition() {
+    return sprites.get(0).getX() == sprites.get(1).getX() - Sprites.BIRD_WIDTH;
+  }
+
+  private boolean leftOfPipeDown() {
+    return sprites.get(0).getY() < sprites.get(2).getY() + Sprites.PIPE_HEIGHT && sprites.get(0).getY() > startYPipeDown;
+  }
+
+  private boolean leftOfPipeUp() {
+    return sprites.get(0).getY() < sprites.get(1).getY() + Sprites.PIPE_HEIGHT && sprites.get(0).getY() > startYPipeUp;
+  }
+
 }

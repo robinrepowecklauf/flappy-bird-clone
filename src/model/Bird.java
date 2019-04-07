@@ -9,34 +9,39 @@ import java.awt.geom.Point2D;
 class Bird implements IPositionable {
 
   private Point2D position;
-  private double x, y, dx, dy;
+  private float dy;
 
 
-  Bird(double x, double y) {
-    this.x = x;
-    this.y = y;
-    this.position = new Point2D.Double(x, y);
+  Bird(float x, float y) {
+
+    this.position = new Point2D.Float(x, y);
   }
 
-  public double getX() {
-    return position.getX();
+  public float getX() {
+    return (float) position.getX();
   }
 
-  public double getY() {
-    return position.getY();
+  public float getY() {
+    return (float) position.getY();
   }
 
-  public void setX(double x) {
-    this.position = new Point2D.Double(x, this.getY());
+  public void setX(float x) {
+    this.position = new Point2D.Float(x, this.getY());
   }
 
-  public void setY(double y) {
-    this.position = new Point2D.Double(this.getX(), y);
+  public void setY(float y) {
+    this.position = new Point2D.Float(this.getX(), y);
   }
 
   public void updatePhysics() {
-    this.position.setLocation(this.x += dx, this.y += dy);
-    this.dy = 0.5;
+    setX(getX());
+    setY(getY() + dy);
+    this.position.setLocation(getX(), getY());
+    this.dy += 0.8f;
+  }
+
+  public void jump() {
+    this.dy = -10;
   }
 
   public void reset() {

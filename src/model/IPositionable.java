@@ -6,10 +6,10 @@ package model;
 
 public interface IPositionable {
 
-  double getX();
+  float getX();
 
-  double getY();
+  float getY();
 
-  void setX(double x);
+  void setX(float x);
 
 }

@@ -10,6 +10,7 @@ import javax.swing.Timer;
 import model.GameModel;
 import view.GamePanel;
 
+import static java.awt.event.KeyEvent.VK_ENTER;
 import static java.awt.event.KeyEvent.VK_SPACE;
 
 public class GameController implements ActionListener, KeyListener {
@@ -30,14 +31,21 @@ public class GameController implements ActionListener, KeyListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    model.handlePipes();
-    view.repaint();
+    if (model.started) {
+      model.handlePipes();
+      model.handleBird();
+      view.repaint();
+    }
   }
 
   @Override
   public void keyPressed(KeyEvent e) {
     if (e.getKeyCode() == VK_SPACE) {
       model.jump();
+    }
+
+    if (e.getKeyCode() == VK_ENTER) {
+      model.started = true;
     }
   }
 

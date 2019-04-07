@@ -6,11 +6,11 @@ package model;
 
 class GameObjectFactory {
 
-  static Bird createBird(int x, int y) {
+  static Bird createBird(float x, float y) {
     return new Bird(x, y);
   }
 
-  static Pipe createPipe(int x, int y) {
+  static Pipe createPipe(float x, float y) {
     return new Pipe(x, y);
   }
 }

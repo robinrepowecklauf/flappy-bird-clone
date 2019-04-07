@@ -13,24 +13,24 @@ class Pipe implements IPositionable {
 
   int gap = new Random().nextInt(100) + 100;
 
-  Pipe(double x, double y) {
-    this.position = new Point2D.Double(x, y);
+  Pipe(float x, float y) {
+    this.position = new Point2D.Float(x, y);
   }
 
-  public double getX() {
-    return position.getX();
+  public float getX() {
+    return (float) position.getX();
   }
 
-  public double getY() {
-    return position.getY();
+  public float getY() {
+    return (float) position.getY();
   }
 
-  public void setX(double x) {
-    this.position = new Point2D.Double(x, this.getY());
+  public void setX(float x) {
+    this.position = new Point2D.Float(x, this.getY());
   }
 
-  public void setY(double y) {
-    this.position = new Point2D.Double(this.getX(), y);
+  public void setY(float y) {
+    this.position = new Point2D.Float(this.getX(), y);
   }
 
   @Override

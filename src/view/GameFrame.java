@@ -17,7 +17,7 @@ public class GameFrame extends JFrame {
   private GameController controller;
 
   public static final int WINDOW_WIDTH = 800;
-  static final int WINDOW_HEIGHT = 600;
+  public static final int WINDOW_HEIGHT = 600;
   private static final Dimension WINDOW_DIMENSION = new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT);
   private static final Dimension SCREEN_DIMENSION = Toolkit.getDefaultToolkit().getScreenSize();
 
