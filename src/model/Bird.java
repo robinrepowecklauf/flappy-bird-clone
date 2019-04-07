@@ -45,7 +45,7 @@ class Bird implements IPositionable {
   }
 
   public void reset() {
-    this.position = new Point2D.Double(50, 280);
+    this.position = new Point2D.Float(50, 280);
   }
 
   @Override

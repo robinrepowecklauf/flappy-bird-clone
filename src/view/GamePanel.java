@@ -26,7 +26,11 @@ public class GamePanel extends JPanel {
   private void imageToObject() {
     sprite.bind(model.sprites.get(0), sprite.bird);
     sprite.bind(model.sprites.get(1), sprite.pipeUp);
-    sprite.bind(model.sprites.get(2), sprite.pipeDown);
+    sprite.bind(model.sprites.get(2), sprite.pipeUp);
+    sprite.bind(model.sprites.get(3), sprite.pipeUp);
+    sprite.bind(model.sprites.get(4), sprite.pipeDown);
+    sprite.bind(model.sprites.get(5), sprite.pipeDown);
+    sprite.bind(model.sprites.get(6), sprite.pipeDown);
   }
 
   @Override

@@ -13,8 +13,8 @@ import view.Sprites;
 public class GameModel {
 
   public List<IPositionable> sprites = new ArrayList<>();
-  private int startXPipe = 200;
-  private int backgroundSpeed = 1;
+  private int startXPipe = GameFrame.WINDOW_WIDTH / 3;
+  private double backgroundSpeed = 2.5;
   private int startYPipeDown = -30;
   private int startYPipeUp = 300;
   public boolean started = false;
@@ -22,14 +22,19 @@ public class GameModel {
   // TODO DO THIS MORE FLEXIBLE I.E COPY AN EXISTING PIPE??
   public GameModel() {
     sprites.add(GameObjectFactory.createBird(50, 330));
+
     sprites.add(GameObjectFactory.createPipe(startXPipe, startYPipeUp));
+    sprites.add(GameObjectFactory.createPipe(startXPipe * 2, startYPipeUp));
+    sprites.add(GameObjectFactory.createPipe(startXPipe * 3, startYPipeUp));
+
     sprites.add(GameObjectFactory.createPipe(startXPipe, startYPipeDown));
+    sprites.add(GameObjectFactory.createPipe(startXPipe * 2, startYPipeDown));
+    sprites.add(GameObjectFactory.createPipe(startXPipe * 3, startYPipeDown));
   }
 
   public void handlePipes() {
-    for (IPositionable pipe : sprites) {
+    for (IPositionable pipe : sprites)
       movePipes(pipe);
-    }
   }
 
   public void handleBird() {
@@ -50,10 +55,11 @@ public class GameModel {
 
   private void movePipes(IPositionable pipe) {
     if (pipe instanceof Pipe) {
-      pipe.setX(startXPipe -= backgroundSpeed);
+      float temp = pipe.getX();
+      pipe.setX(temp -= backgroundSpeed);
     }
     if (pipe.getX() + Sprites.PIPE_WIDTH <= 0) {
-      startXPipe = GameFrame.WINDOW_WIDTH - 20;
+      pipe.setX( GameFrame.WINDOW_WIDTH - 20);
     }
   }
 
