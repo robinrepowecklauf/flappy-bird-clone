@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.geom.Point2D;
+import java.util.Random;
 
 /**
  * Class that defines the fundamentals of a pipe
@@ -28,6 +29,11 @@ class Pipe implements IPositionable {
 
   public void setY(float y) {
     this.position = new Point2D.Float(this.getX(), y);
+  }
+
+  public int getRandomY() {
+    Random random = new Random();
+    return random.nextInt(200) + 100;
   }
 
   @Override

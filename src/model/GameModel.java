@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +19,11 @@ public class GameModel {
   private int startYPipeDown = -30;
   private int startYPipeUp = 300;
   public boolean started = false;
+  private Rectangle birdBounds, topPipeBounds, botPipeBounds;
 
   // TODO DO THIS MORE FLEXIBLE I.E COPY AN EXISTING PIPE??
   public GameModel() {
+
     sprites.add(GameObjectFactory.createBird(50, 330));
 
     sprites.add(GameObjectFactory.createPipe(startXPipe, startYPipeUp));
@@ -33,23 +36,28 @@ public class GameModel {
   }
 
   public void handlePipes() {
-    for (IPositionable pipe : sprites)
+    for (IPositionable pipe : sprites) {
       movePipes(pipe);
+    }
   }
 
   public void handleBird() {
     for (IPositionable bird : sprites) {
+      checkCollision(bird);
       if (bird instanceof Bird) {
         ((Bird) bird).updatePhysics();
-        checkCollision(bird);
       }
     }
   }
 
   // TODO REPLACE SOUT
-  private void checkCollision(IPositionable bird) {
-    if (bird instanceof Bird && intersects()) {
-      System.out.println("Hit");
+  public void checkCollision(IPositionable s) {
+    if (s instanceof Bird) {
+      birdBounds = new Rectangle(Math.round(s.getX()), Math.round(s.getY()), Sprites.BIRD_WIDTH, Sprites.BIRD_HEIGHT);
+    }
+    if (s instanceof Pipe){
+      topPipeBounds = new Rectangle(Math.round(s.getX()), Math.round(s.getY()), Sprites.PIPE_WIDTH, Sprites.PIPE_HEIGHT);
+      botPipeBounds = new Rectangle(Math.round(s.getX()), Math.round(s.getY()), Sprites.PIPE_WIDTH, Sprites.PIPE_HEIGHT);
     }
   }
 
@@ -57,9 +65,10 @@ public class GameModel {
     if (pipe instanceof Pipe) {
       float temp = pipe.getX();
       pipe.setX(temp -= backgroundSpeed);
+      checkCollision(pipe);
     }
     if (pipe.getX() + Sprites.PIPE_WIDTH <= 0) {
-      pipe.setX( GameFrame.WINDOW_WIDTH - 20);
+      pipe.setX(GameFrame.WINDOW_WIDTH + Sprites.PIPE_WIDTH);
     }
   }
 
@@ -72,20 +81,20 @@ public class GameModel {
     }
   }
 
-  private boolean intersects() {
-    return sameXPosition() && (leftOfPipeDown() || leftOfPipeUp());
+  private boolean intersects(IPositionable pipe, int i) {
+    return sameXPosition(pipe) && (leftOfPipeDown(i) || leftOfPipeUp(i));
   }
 
-  private boolean sameXPosition() {
-    return sprites.get(0).getX() == sprites.get(1).getX() - Sprites.BIRD_WIDTH;
+  private boolean sameXPosition(IPositionable pipe) {
+    return sprites.get(0).getX() == sprites.get(sprites.indexOf(pipe)).getX() - Sprites.BIRD_WIDTH;
   }
 
-  private boolean leftOfPipeDown() {
-    return sprites.get(0).getY() < sprites.get(2).getY() + Sprites.PIPE_HEIGHT && sprites.get(0).getY() > startYPipeDown;
+  private boolean leftOfPipeDown(int i) {
+    return sprites.get(0).getY() < sprites.get(i).getY() + Sprites.PIPE_HEIGHT && sprites.get(0).getY() > startYPipeDown;
   }
 
-  private boolean leftOfPipeUp() {
-    return sprites.get(0).getY() < sprites.get(1).getY() + Sprites.PIPE_HEIGHT && sprites.get(0).getY() > startYPipeUp;
+  private boolean leftOfPipeUp(int i) {
+    return sprites.get(0).getY() < sprites.get(i).getY() + Sprites.PIPE_HEIGHT && sprites.get(0).getY() > startYPipeUp;
   }
 
 }
